@@ -24,9 +24,10 @@ To evaluate performance using accuracy and confusion matrix.
 # Model Performance
 Accuracy: 93%
 Confusion Matrix:
-            Predicted Spam        	Predicted Not Spam
-Actual Spam	       13	            2
-Actual Not Spam	     0	         15
 
+	Predicted Spam Predicted Not Spam
+Actual Spam	13	2
+Actual Not Spam 0	15
+ 
 # output screenshot: ![Confusion Matrix](confusion_matrix.png)
 
