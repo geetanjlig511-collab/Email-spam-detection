@@ -1,50 +1,50 @@
 import pandas as pd
-import nltk
-import string
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-nltk.download('stopwords')
-from nltk.corpus import stopwords
+from sklearn.metrics import accuracy_score, confusion_matrix
 
-# Load dataset
-df = pd.read_csv("spam.csv", encoding='latin-1')
-df = df[['v1','v2']]
-df.columns = ['label','message']
-# Convert labels to binary
-df['label'] = df['label'].map({'ham':0, 'spam':1})
+# 1. Load dataset
+data = pd.read_csv("spam.csv", encoding='latin-1')
 
-# Text Cleaning Function
-def clean_text(text):
-    text = text.lower()
-    text = ''.join([char for char in text if char not in string.punctuation])
-    words = text.split()
-    words = [word for word in words if word not in stopwords.words('english')]
-    return ' '.join(words)
+data = data[['v1', 'v2']]
+data.columns = ['label', 'message']
 
-df['clean_message'] = df['message'].apply(clean_text)
+# Convert labels
+data['label'] = data['label'].map({'ham': 0, 'spam': 1})
 
-# Train Test Split
+# 2. Train-test split
 X_train, X_test, y_train, y_test = train_test_split(
-    df['clean_message'], df['label'], test_size=0.2, random_state=42
+    data['message'], data['label'], test_size=0.2, random_state=42
 )
 
-# TF-IDF Vectorization
-vectorizer = TfidfVectorizer()
+# 3. Convert text to numbers
+vectorizer = CountVectorizer()
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
-# Model Training
+# 4. Train model
 model = LogisticRegression()
 model.fit(X_train_vec, y_train)
 
-# Prediction
+# 5. Predict
 y_pred = model.predict(X_test_vec)
 
-# Accuracy
+# 6. Accuracy
 accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", round(accuracy * 100, 2), "%")
 
-print("Accuracy:", accuracy*100)
-print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
-print("\nClassification Report:\n", classification_report(y_test, y_pred))
+# 7. Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(cm)
+
+# 8. Save Confusion Matrix as PNG
+plt.imshow(cm)
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.colorbar()
+plt.savefig("confusion_matrix.png")
+plt.show()
