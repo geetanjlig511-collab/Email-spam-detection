@@ -14,6 +14,12 @@ To preprocess text data using NLP techniques.
 To train a classification model.
 To evaluate performance using accuracy and confusion matrix. 
 
+# Technologies Used
+Python – Programming language
+Pandas – For handling dataset
+Scikit-learn – For machine learning model
+Matplotlib – For visualization
+
 # Model Used – Logistic Regression
 We used Logistic Regression because:
 It is best for binary classification (Spam / Not Spam)
