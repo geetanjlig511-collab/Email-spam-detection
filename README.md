@@ -18,7 +18,7 @@ To evaluate performance using accuracy and confusion matrix.
 2.Clean and preprocess text
 3.Convert text into numerical form using CountVectorizer
 4.Split data into training and testing sets
-5.Train Naive Bayes classifier
+5.Train logistic regression classifier
 6.Evaluate using accuracy and confusion matrix
 
 # Model Performance
