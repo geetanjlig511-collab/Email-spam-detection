@@ -12,7 +12,15 @@ Manually filtering them is difficult and time-consuming.This project aims to aut
 To classify emails as Spam or Not Spam.
 To preprocess text data using NLP techniques.
 To train a classification model.
-To evaluate performance using accuracy and confusion matrix.
+To evaluate performance using accuracy and confusion matrix. 
+
+# Model Used – Logistic Regression
+We used Logistic Regression because:
+It is best for binary classification (Spam / Not Spam)
+It works well with text data
+It is simple and fast
+It provides probability-based output
+
 # How It Works
 1.Load dataset
 2.Clean and preprocess text
